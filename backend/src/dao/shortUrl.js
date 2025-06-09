@@ -12,5 +12,5 @@ export const saveShortUrl = async(shortUrl, longUrl, userId)=> {
 }
 
 export const getShortUrl = async (shortUrl)=> {
-    return await urlSchema.findOne({short_url: shortUrl})
+    return await urlSchema.findOneAndUpdate({short_url: shortUrl}, {$inc:{clicks: 1}})
 }

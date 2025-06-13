@@ -15,11 +15,10 @@ export const registerUser = async(name,email,password)=> {
 export const loginUser = async(email,password)=> {
     const user =  await findUserByEmail(email)
     const plainPassword = await bcrypt.compare(password, user.password )
-    console.log(plainPassword)
     if(!user || plainPassword == false) {
         throw new Error("Invalid credentials")
         return;
     }
     const token = signToken({id: user._id})
-    return token
+    return {token, user}
 }

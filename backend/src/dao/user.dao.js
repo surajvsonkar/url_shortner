@@ -5,7 +5,9 @@ export const findUserByEmail = async(email)=> {
 }
 
 export const findUserById = async(id)=> {
-    return await User.findOne(id)
+    return await User.findOne({
+        _id: id
+    })
 }
 
 export const createUser = async(name, email, password)=> {
